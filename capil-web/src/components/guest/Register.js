@@ -66,7 +66,7 @@ class Register extends React.Component {
 
             axios.post('http://127.0.0.1:8000/api/register/', this.state.user)
               .then(function (response) {
-                that.redirect("/");
+               // that.redirect("/");
               })
               .catch(function (error) {
                 alert(error);
@@ -126,12 +126,6 @@ class Register extends React.Component {
                                     <i className="flaticon-interface"></i>
                                 </div>
                             </div>
-                            {/* <div className="row form-sub m-0">
-                                <div className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input" name="agree" id="agree"/>
-                                    <label className="custom-control-label" htmlFor="agree">I Agree the terms and conditions.</label>
-                                </div>
-                            </div> */}
                             <div className="form-action">
                                 <a href="#" id="show-signin" className="btn btn-danger btn-rounded btn-login mr-3">Cancel</a>
                                 <button className="btn btn-primary btn-rounded btn-login">Sign Up</button>

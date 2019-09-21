@@ -1,6 +1,17 @@
 import React from 'react';
 import { Link, NavLink } from "react-router-dom";
-const Navbar = function () {
+import {authenticationService} from '../../service/AutenticationService';
+
+
+class Navbar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.Logout = this.Logout.bind();
+    }
+    Logout() {
+        authenticationService.logout();
+    }
+   render(){
     return (
         <nav className="navbar navbar-header navbar-expand-lg" >
             <div className="container-fluid">
@@ -162,7 +173,7 @@ const Navbar = function () {
                                 <div className="dropdown-divider"></div>
                                 <a className="dropdown-item" href="#">Account Setting</a>
                                 <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" href="#">Logout</a>
+                                <a className="dropdown-item" onClick={this.Logout.bind(this)}>Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -170,6 +181,7 @@ const Navbar = function () {
             </div>
         </nav >
     );
+   }
 }
 
 export default Navbar;
