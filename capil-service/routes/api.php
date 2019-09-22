@@ -20,11 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('auth/register','Api\Auth\AuthController@register');
 Route::post('auth/login','Api\Auth\AuthController@login');
 Route::post('aut','Api\Auth\AuthController@auth');
-Route::get('general/navigation','Api\General\Navigationcontroller@index');
-Route::get('user/users', 'Api\User\UserController@index');
+//Route::get('user/users', 'Api\User\UserController@index');
  
 Route::group(['middleware' => 'auth:api'], function(){
-   // Route::get('user/users', 'Api\User\UserController@index');
+    Route::get('user/users', 'Api\User\UserController@index');
+    Route::get('general/navigation','Api\General\Navigationcontroller@index');
     Route::post('auth/details', 'Api\Auth\AuthController@details');
     Route::get('auth/logout', 'Api\Auth\AuthController@logout');
     });
