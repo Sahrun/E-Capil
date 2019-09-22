@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route , Switch } from "react-router-dom";
 
-import { history } from './service/History';
+import { history } from './config/History';
 import { authenticationService } from './service/AutenticationService';
-import { PrivateRoute } from './service/RoutePrivate';
+import { PrivateRoute } from './config/RoutePrivate';
 
 import Main from './components/main/Main';
 import Login from './components/guest/Login';

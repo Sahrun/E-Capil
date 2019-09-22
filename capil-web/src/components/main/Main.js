@@ -1,5 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route , Redirect, Switch   } from "react-router-dom";
+import {httpHeader} from '../../config/HttpHeader';
+import {httpService} from '../../service/HttpService';
+import {config} from '../../config/Config';
+
 import Navbar from '../layout/Navbar';
 import Sidebar from '../layout/Sidebar';
 import Dashboard from '../dashboard/Dasboard';
@@ -10,7 +14,15 @@ var Page_404 = function() {
 class Main extends React.Component {
     constructor(props){
         super();
-        this.state = { ...props};
+        httpHeader.HeaderRequest();
+        this.state = { ...props,navigation:[]};
+        httpService.Get(config.routeApi.navigation,null).then(response=>{
+              this.setState({
+                  navigation:response.data
+             });
+        });
+    }
+    componentDidMount() {
     }
     render() {
         return <div className="wrapper">
@@ -36,24 +48,28 @@ class Main extends React.Component {
                 {/* End Logo Header */}
 
                 {/* End Navbar */}
-                <Navbar />
+                <Navbar/>
                 {/* Navbar Header */}
 
             </div>
 
             {/* Sidebar */}
-            <Sidebar />
+            {
+                this.state.navigation.length &&
+                <Sidebar navigation={this.state.navigation}/>
+            }
             {/* End Sidebar */}
 
             {/* Content */}
             <div className="main-panel">
                 <div className="content">
-                <Router>
-                    <Switch>
-                        <Route exact path="/" component={Dashboard} />
-                        <Route component={Page_404}/>
-                    </Switch>
-                </Router>
+                    <Router>
+                        <Switch>
+                            <Route exact path="/dasboard" component={Dashboard} />
+                            <Route exact path="/" component={Dashboard} />
+                            <Route component={Page_404}/>
+                        </Switch>
+                    </Router>
                 </div>
             </div>
             {/* End Content */}

@@ -1,5 +1,12 @@
 import React from 'react';
+import {httpService} from '../../service/HttpService';
+import {config} from '../../config/Config';
+
 class Dashboard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return <div className="page-inner">
             <div className="page-header">

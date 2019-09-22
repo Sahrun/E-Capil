@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {authenticationService} from '../../service/AutenticationService';
 
 const Error = 
 {
@@ -63,15 +64,10 @@ class Register extends React.Component {
         // this.setState(state);
         
         // if(!inValid){
-
-            axios.post('http://127.0.0.1:8000/api/register/', this.state.user)
-              .then(function (response) {
-               // that.redirect("/");
-              })
-              .catch(function (error) {
+        authenticationService.register(this.state.user)
+        .catch(function (error) {
                 alert(error);
-              });
-        // }
+        });
         event.preventDefault();
     }
     redirect(route){

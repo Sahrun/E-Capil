@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, NavLink } from "react-router-dom";
 import {authenticationService} from '../../service/AutenticationService';
 
-
 class Navbar extends React.Component {
     constructor(props) {
         super(props);

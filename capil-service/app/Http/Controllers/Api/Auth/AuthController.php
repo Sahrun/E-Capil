@@ -1,13 +1,10 @@
 <?php
-
 namespace App\Http\Controllers\Api\Auth;
-
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth; 
 use Illuminate\Http\Request;
-
 class AuthController extends Controller
 {
     public $successStatus = 200;
@@ -21,15 +18,12 @@ class AuthController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
     use AuthenticatesUsers;
-
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-
     /**
      * Create a new controller instance.
      *
@@ -37,7 +31,6 @@ class AuthController extends Controller
      */
     public function register(Request $request){
         $input = new User;
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -58,13 +51,11 @@ class AuthController extends Controller
             return response()->json(['error'=>'Unauthorised'], 401); 
         } 
     }
-
     public function auth(){
        
         return response()->json(['success'=>'autentication'], successStatus); 
     }
     public function logout (Request $request) {
-
         $token = $request->user()->token();
         $token->revoke();
     
@@ -72,7 +63,6 @@ class AuthController extends Controller
         return response($response, 200);
     
     }
-
     public function details(Request $request) 
     { 
         $user = Auth::user(); 

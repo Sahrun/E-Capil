@@ -1,17 +1,26 @@
 import { BehaviorSubject } from 'rxjs';
 
-import {config} from './Config';
+import {config} from '../config/Config';
 import { handleResponse } from './HandleResponseSevice';
 import axios from 'axios';
 
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
 export const authenticationService = {
+    register,
     login,
     logout,
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue () { return currentUserSubject.value }
 };
+
+function register(user){
+    return axios.post(config.apiUrl+'auth/register', user)
+    .then(handleResponse).then(respose => {
+    }).catch(err => {
+        console.log(err);
+    });
+}
 
 function login(user) {
     return axios.post(config.apiUrl+'auth/login/', user)
