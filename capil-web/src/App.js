@@ -1,14 +1,15 @@
-import React from 'react';
+import React , { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route , Switch } from "react-router-dom";
 
 import { history } from './config/History';
 import { authenticationService } from './service/AutenticationService';
 import { PrivateRoute } from './config/RoutePrivate';
+import { Loading } from './components/layout/Loading';
 
-import Main from './components/main/Main';
-import Login from './components/guest/Login';
-import Register from './components/guest/Register';
-import Page_404 from './components/default/Page_404';
+const Main = lazy(() => import( './components/main/Main'));
+const Login = lazy(() => import( './components/guest/Login'));
+const Register = lazy(() => import( './components/guest/Register'));
+const Page_404 = lazy(() => import( './components/default/Page_404'));
 
 class App extends React.Component {
   constructor(props) {
@@ -29,8 +30,9 @@ class App extends React.Component {
   }
   render(){
     const { currentUser } = this.state;
-        return (
+        return (<div>
           <Router history={history}>
+            <Suspense fallback={<Loading.LoadingPage/>}>
                   <Switch>
                       <PrivateRoute exact path="/" component={Main} />
                       <Route path="/login/" component={Login} />
@@ -38,8 +40,8 @@ class App extends React.Component {
                       <Route path="/404" component={Page_404}/>
                       <PrivateRoute component={Main} />
                   </Switch>
-              </Router>
-        );
+              </Suspense>
+          </Router><Loading.Spinner/></div>);
 }
 
 }

@@ -11,6 +11,10 @@ class Sidebar extends React.Component
         this.setState({
             navigation:this.props.navigation
        });
+       var scrollbar = window.$('.sidebar .scrollbar-inner');
+        if (scrollbar.length > 0) {
+            scrollbar.scrollbar();
+        }
     }
     render(){
         return (<div className="sidebar">
@@ -63,69 +67,6 @@ class Sidebar extends React.Component
                             </li>
                          )
                         }
-                        
-                        <li className="nav-section">
-                            <span className="sidebar-mini-icon">
-                                <i className="fa fa-ellipsis-h"></i>
-                            </span>
-                            <h4 className="text-section">Components</h4>
-                        </li>
-                        <li className="nav-item">
-                            <a data-toggle="collapse" href="#base">
-                                <i className="fas fa-layer-group"></i>
-                                <p>Base</p>
-                                <span className="caret"></span>
-                            </a>
-                            <div className="collapse" id="base">
-                                <ul className="nav nav-collapse">
-                                    <li>
-                                        <a href="components/avatars.html">
-                                            <span className="sub-item">Avatars</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components/buttons.html">
-                                            <span className="sub-item">Buttons</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components/gridsystem.html">
-                                            <span className="sub-item">Grid System</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components/panels.html">
-                                            <span className="sub-item">Panels</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components/notifications.html">
-                                            <span className="sub-item">Notifications</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components/sweetalert.html">
-                                            <span className="sub-item">Sweet Alert</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components/font-awesome-icons.html">
-                                            <span className="sub-item">Font Awesome Icons</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components/flaticons.html">
-                                            <span className="sub-item">Flaticons</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components/typography.html">
-                                            <span className="sub-item">Typography</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>

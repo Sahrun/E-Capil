@@ -93,7 +93,6 @@ $(document).ready(function(){
 	mini_sidebar = 0,
 	page_sidebar_open =0;
 
-
 	if(!toggle_sidebar) {
 		var toggle = $('.sidenav-toggler');
 
@@ -127,7 +126,7 @@ $(document).ready(function(){
 		});
 		toggle_topbar = true;
 	}
-
+	
 	if(!minimize_sidebar){
 		var minibutton = $('.btn-minimize');
 		if($('html').hasClass('sidebar_minimize')){
