@@ -172,7 +172,7 @@ class Navbar extends React.Component {
                                 <div className="dropdown-divider"></div>
                                 <a className="dropdown-item" href="#">Account Setting</a>
                                 <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" onClick={this.Logout.bind(this)}>Logout</a>
+                                <a className="dropdown-item"  href="#" onClick={this.Logout.bind(this)}>Logout</a>
                             </li>
                         </ul>
                     </li>

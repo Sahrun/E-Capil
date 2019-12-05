@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
 
 import {config} from '../config/Config';
-import { handleResponse } from './HandleResponseSevice';
+import { handleResponse } from './HandleSevice';
 import axios from 'axios';
 
 const currentUserSubject = new BehaviorSubject(JSON.parse(getCurrentUser('currentUser')));

@@ -30,3 +30,16 @@
        transform: rotate(360deg);
    }
 }
+
+.text-left{
+    text-align: left !important;
+}
+.text-right{
+    text-align: right !important;
+}
+.label-control-inline-blok{
+    display: inline-block !important;
+}
+.b, .strong, b, strong {
+font-weight: bold !important;
+}

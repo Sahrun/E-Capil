@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 class Sidebar extends React.Component
 {
     constructor(props) {
         super(props);
-        this.state = {navigation:[]};
+        this.state = {navigation:[],path:''};
+        this.navActive = this.navActive.bind(this);
     }
     componentDidMount() {
         this.setState({
@@ -15,6 +17,12 @@ class Sidebar extends React.Component
         if (scrollbar.length > 0) {
             scrollbar.scrollbar();
         }
+    }
+    componentWillMount(){
+        this.setState({path : window.location.pathname});
+    };
+    navActive(pathname, event){
+        this.setState({path:pathname});
     }
     render(){
         return (<div className="sidebar">
@@ -58,11 +66,10 @@ class Sidebar extends React.Component
                     <ul className="nav">
                         {
                          this.props.navigation.map((nav,i) =>
-                            <li className="nav-item active" key={i}>
+                           <li className={`nav-item ${this.state.path == nav.NavigationUrl?'active':''}`} key={i} onClick={this.navActive.bind(this,nav.NavigationUrl)}>
                             <Link to={nav.NavigationUrl}>
-                                    <i className="fas fa-home"></i>
+                                    <i className={nav.icon}></i>
                                     <p>{nav.NavigationTitle}</p>
-                                    <span className="badge badge-count">5</span>
                             </Link>
                             </li>
                          )

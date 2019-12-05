@@ -30,7 +30,6 @@ class AuthController extends Controller
      * @return void
      */
     public function register(Request $request){
-        $input = new User;
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Route , Redirect, Switch   } from "react-route
 import {httpHeader} from '../../config/HttpHeader';
 import {httpService} from '../../service/HttpService';
 import {config} from '../../config/Config';
+import { Loading } from '../layout/Loading';
 
 import Navbar from '../layout/Navbar';
 import Sidebar from '../layout/Sidebar';
 import Dashboard from '../dashboard/Dasboard';
+import Warga from '../warga/Warga';
 
 var Page_404 = function() {
-     window.location ="http://localhost:3000/404";
+     window.location = config.webUrl+config.Page_404;
 }
 
 
@@ -22,14 +24,20 @@ class Main extends React.Component {
             navigation:[],
             mini_sidebar : false,
         };
-        httpService.Get(config.routeApi.navigation,null).then(response=>{
-              this.setState({
-                  navigation:response.data
-             });
-        });
+     
         this.toggleSidebar = this.toggleSidebar.bind(this);
     }
     componentDidMount() {
+    }
+    componentWillMount() {
+        Loading.SpinnerRun(true);
+        httpService.Get(config.routeApi.navigation,null).then(response=>{
+            this.setState({
+                  navigation:response
+             }, function() {
+                Loading.SpinnerRun(false);
+             });
+        });
     }
     toggleSidebar(event){
         this.state.mini_sidebar = !this.state.mini_sidebar;
@@ -79,13 +87,12 @@ class Main extends React.Component {
             {/* Content */}
             <div className="main-panel">
                 <div className="content">
-                    <Router>
-                        <Switch>
-                            <Route exact path="/dasboard" component={Dashboard} />
-                            <Route exact path="/" component={Dashboard} />
-                            <Route component={Page_404}/>
-                        </Switch>
-                    </Router>
+                    <Switch>
+                        <Route exact path='/' component={Dashboard} />
+                        <Route path="/dasboard" component={Dashboard} />
+                        <Route path="/warga" component={Warga} />
+                        <Route component={Page_404}/>
+                    </Switch>
                 </div>
             </div>
             {/* End Content */}

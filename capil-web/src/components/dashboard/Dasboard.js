@@ -2,6 +2,9 @@ import React from 'react';
 import {httpService} from '../../service/HttpService';
 import {config} from '../../config/Config';
 
+import { Loading } from '../layout/Loading';
+
+
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);

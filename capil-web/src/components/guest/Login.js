@@ -23,8 +23,7 @@ class Login extends React.Component {
                 emailvalid:true,
                 errorPassword:'',
                 passwordVaid:true
-            },
-            passwordType:'password'
+            }
             
       };
       this.handleChange = this.handleChange.bind(this);
@@ -64,9 +63,18 @@ class Login extends React.Component {
             }
         });
     }
-    ViewPassword(){
-        var type = this.state.passwordType == 'password'? 'text': 'password';
-        this.setState({passwordType:type});
+    ViewPassword(event){
+        const target = event.target;
+        var _input = target.parentNode.parentNode.childNodes[0];
+         const _type = _input.type === 'password' ? 'text': 'password';
+         _input.type =_type;
+         if(_type == 'text')
+         {
+             target.style.color = 'cornflowerblue'
+         }else
+         {
+            target.style.color = ''
+         }
     }
     validate(){
         var isValid = true;
@@ -105,12 +113,12 @@ class Login extends React.Component {
                             <label htmlFor="password" className="placeholder"><b>Password</b></label>
                             <a href="#" className="link float-right">Lupa password ?</a>
                             <div className="position-relative">
-                                <input id="password" name="password" type={this.state.passwordType} className={!this.state.error.passwordVaid?'form-control is-invalid':'form-control'} required onChange={this.handleChange.bind(this)} />
+                                <input id="password" name="password" type='password' className={!this.state.error.passwordVaid?'form-control is-invalid':'form-control'} required onChange={this.handleChange.bind(this)} />
                                 <div className="show-password">
                                     <i className="flaticon-interface" onClick={this.ViewPassword.bind(this)}></i>
                                 </div>
-                                <span className='text-danger'>{this.state.error.errorPassword}</span>
                             </div>
+                            <span className='text-danger'>{this.state.error.errorPassword}</span>
                         </div>
                         <div className="form-group form-action-d-flex mb-3">
                             <div className="custom-control custom-checkbox">

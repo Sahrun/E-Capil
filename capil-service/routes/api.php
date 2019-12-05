@@ -27,4 +27,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('general/navigation','Api\General\Navigationcontroller@index');
     Route::post('auth/details', 'Api\Auth\AuthController@details');
     Route::get('auth/logout', 'Api\Auth\AuthController@logout');
+    Route::get('warga/wargas','Api\Warga\WargaController@index');
+    Route::post('warga/save','Api\Warga\WargaController@create');
+    Route::get('warga/checkingExistingNIK/{NIK}','Api\Warga\WargaController@existingNIK');
     });
